@@ -1,0 +1,22 @@
+{
+  "name": "autostack-ai-realestate",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Autostack AI real estate demo: public site, listings API and admin panel",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "db:setup": "node scripts/setup-db.mjs",
+    "db:reset": "node scripts/setup-db.mjs --reset"
+  },
+  "engines": {
+    "node": ">=18.18"
+  },
+  "dependencies": {
+    "next": "^15.5.28",
+    "pg": "^8.23.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  }
+}

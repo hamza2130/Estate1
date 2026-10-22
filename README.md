@@ -44,7 +44,7 @@ Requirements: Node.js 20+ and PostgreSQL 14+ (or Docker).
 npm install
 cp .env.example .env            # edit DATABASE_URL / admin credentials if needed
 docker compose up -d            # optional: starts Postgres on localhost:5432
-npm run db:setup                # creates tables, admin user and demo content
+npm run db:setup                # optional: the app also does this on first start
 npm run dev                     # http://localhost:3000
 ```
 
@@ -54,12 +54,15 @@ Admin: http://localhost:3000/admin with the `ADMIN_EMAIL` / `ADMIN_PASSWORD` fro
 
 For production: `npm run build && npm start`.
 
-## Deploy (Vercel + Neon, both free tiers)
+## Deploy a live link (Vercel + Neon, free)
 
-1. Create a Postgres database on [Neon](https://neon.tech) and copy its connection string.
-2. Run `DATABASE_URL="<neon url>" npm run db:setup` once from your machine.
-3. Import this repo in Vercel and set `DATABASE_URL`, `SESSION_SECRET` (long random string) as environment variables.
-4. Deploy. Uploaded photos are stored in the database, so no extra file storage is needed.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fhamza2130%2Festate1&env=SESSION_SECRET&envDescription=Any%20long%20random%20string%20used%20to%20sign%20admin%20sessions&project-name=autostack-ai-realestate)
+
+1. Click the button (or in Vercel: **Add New → Project → import `hamza2130/estate1`**). Enter any long random text for `SESSION_SECRET`.
+2. In the new Vercel project open **Storage → Create Database → Neon (Postgres)** and connect it to the project. This sets `DATABASE_URL` automatically.
+3. **Deployments → Redeploy.** Open the URL Vercel gives you.
+
+No setup command is needed: on its first request the app creates the tables, the admin account (`ADMIN_EMAIL` / `ADMIN_PASSWORD`, default `admin@autostack.ai` / `admin123`) and the demo listings. Uploaded photos are stored in the database, so no file storage is needed. Change the admin password after the first login (Admin → Site Content).
 
 ## Notes
 
